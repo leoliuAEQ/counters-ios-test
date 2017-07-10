@@ -23,7 +23,7 @@ public class CountersTest {
         desiredCaps.setCapability("platformVersion", "10.3");
         desiredCaps.setCapability("appiumVersion", "1.6.5");
         desiredCaps.setCapability("deviceName", "iPhone 6");
-        desiredCaps.setCapability("app", Paths.get("Counters.app").toAbsolutePath().toString());
+        desiredCaps.setCapability("app", Paths.get("/Users/user/jenkins/builds/Debug-iphonesimulator/Counters.app").toAbsolutePath().toString());
         driver = new AppiumDriver(new URL("http://10.1.1.184:4444/wd/hub"), desiredCaps);
     }
 
