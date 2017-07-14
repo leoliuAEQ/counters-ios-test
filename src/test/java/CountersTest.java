@@ -18,13 +18,16 @@ public class CountersTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws MalformedURLException {
+        String countersLocation = "/Users/user/jenkins/builds/x86_64/Debug-iphonesimulator/Counters.app";
+        String appiumServer = "http://10.1.1.184:4444/wd/hub";
+
         DesiredCapabilities desiredCaps = new DesiredCapabilities();
         desiredCaps.setCapability("platformName", "ios");
         desiredCaps.setCapability("platformVersion", "10.3");
         desiredCaps.setCapability("appiumVersion", "1.6.5");
         desiredCaps.setCapability("deviceName", "iPhone 6");
-        desiredCaps.setCapability("app", Paths.get("/Users/user/jenkins/builds/Debug-iphonesimulator/Counters.app").toAbsolutePath().toString());
-        driver = new AppiumDriver(new URL("http://10.1.1.184:4444/wd/hub"), desiredCaps);
+        desiredCaps.setCapability("app", Paths.get(countersLocation).toAbsolutePath().toString());
+        driver = new AppiumDriver(new URL(appiumServer), desiredCaps);
     }
 
     @AfterMethod(alwaysRun = true)
