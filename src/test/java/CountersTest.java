@@ -18,8 +18,8 @@ public class CountersTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws MalformedURLException {
-        String countersLocation = "/Users/user/jenkins/builds/x86_64/Debug-iphonesimulator/Counters.app";
-        String appiumServer = "http://10.1.1.184:4444/wd/hub";
+        String countersLocation = "/Users/leoliu/Projects/Builds/Counters.app";
+        String appiumServer = "http://localhost:4723/wd/hub";
 
         DesiredCapabilities desiredCaps = new DesiredCapabilities();
         desiredCaps.setCapability("platformName", "ios");
