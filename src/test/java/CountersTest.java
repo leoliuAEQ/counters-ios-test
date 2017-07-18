@@ -37,6 +37,11 @@ public class CountersTest {
 
     @Test
     public void testCounters() {
+    		for(int i=0; i<100; i++) {
+    			driver.findElementByAccessibilityId("Add").click();
+        		assertTrue(driver.findElementByAccessibilityId(String.valueOf(i)).isDisplayed());
+    		}
+    	
         driver.findElementByAccessibilityId("Edit").click();
         assertTrue(driver.findElementByAccessibilityId("Done").isDisplayed());
     }
