@@ -1,4 +1,10 @@
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
+
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -14,7 +20,7 @@ import static org.testng.Assert.assertTrue;
  * Created by user on 2017-06-28.
  */
 public class CountersTest {
-    protected AppiumDriver driver;
+    protected AppiumDriver<IOSElement> driver;
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws MalformedURLException {
@@ -27,7 +33,7 @@ public class CountersTest {
         desiredCaps.setCapability("appiumVersion", "1.6.5");
         desiredCaps.setCapability("deviceName", "iPhone 6");
         desiredCaps.setCapability("app", Paths.get(countersLocation).toAbsolutePath().toString());
-        driver = new AppiumDriver(new URL(appiumServer), desiredCaps);
+        driver = new IOSDriver<IOSElement>(new URL(appiumServer), desiredCaps);
     }
 
     @AfterMethod(alwaysRun = true)
@@ -37,12 +43,23 @@ public class CountersTest {
 
     @Test
     public void testCounters() {
+    		TouchAction ta = new TouchAction(driver);
+    		MobileElement addButton = (MobileElement)driver.findElementByAccessibilityId("Add");
     		for(int i=0; i<100; i++) {
-    			driver.findElementByAccessibilityId("Add").click();
-        		assertTrue(driver.findElementByAccessibilityId(String.valueOf(i)).isDisplayed());
+    			addButton.click();
+    			assertTrue(driver.findElementByAccessibilityId(String.valueOf(i)).isDisplayed());
+    			
+//    			ta.tap(addButton).perform();
+//    			ta.tap(addButton).perform();
+//    			ta.waitAction(100);
+//        		
+//    			driver.findElementByAccessibilityId("Add").click();
+//			
+//    			driver.findElementByAccessibilityId("Done").click();
+        		//assertTrue(driver.findElementByAccessibilityId(String.valueOf(i)).isDisplayed());
     		}
-    	
-        driver.findElementByAccessibilityId("Edit").click();
-        assertTrue(driver.findElementByAccessibilityId("Done").isDisplayed());
+        //driver.findElementByAccessibilityId("Edit").click();
+        //assertTrue(driver.findElementByAccessibilityId("Done").isDisplayed());
+        
     }
 }
