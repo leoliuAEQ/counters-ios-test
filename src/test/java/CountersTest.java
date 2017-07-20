@@ -37,7 +37,7 @@ public class CountersTest {
 
     @Test
     public void testCounters() {
-    		for(int i=0; i<100; i++) {
+    		for(int i=0; i<10; i++) {
     			driver.findElementByAccessibilityId("Add").click();
         		assertTrue(driver.findElementByAccessibilityId(String.valueOf(i)).isDisplayed());
     		}
