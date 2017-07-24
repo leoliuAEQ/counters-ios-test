@@ -1,4 +1,6 @@
 import io.appium.java_client.AppiumDriver;
+
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -19,7 +21,7 @@ public class CountersTest {
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws MalformedURLException {
         String countersLocation = "/Users/user/jenkins/builds/x86_64/Debug-iphonesimulator/Counters.app";
-        String appiumServer = "http://10.1.1.184:4444/wd/hub";
+        String appiumServer = "http://10.1.1.131:4444/wd/hub";
 
         DesiredCapabilities desiredCaps = new DesiredCapabilities();
         desiredCaps.setCapability("platformName", "ios");
@@ -33,16 +35,18 @@ public class CountersTest {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         driver.quit();
-    }
+    } 
 
     @Test
-    public void testCounters() {
-    		for(int i=0; i<10; i++) {
-    			driver.findElementByAccessibilityId("Add").click();
+    public void addFive(){
+    		WebElement addButton = driver.findElementByAccessibilityId("Add");
+    		for(int i=0; i<5; i++) {
+    			addButton.click();
         		assertTrue(driver.findElementByAccessibilityId(String.valueOf(i)).isDisplayed());
     		}
     	
         driver.findElementByAccessibilityId("Edit").click();
         assertTrue(driver.findElementByAccessibilityId("Done").isDisplayed());
     }
+    
 }
